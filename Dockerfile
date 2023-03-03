@@ -7,8 +7,10 @@ RUN git clone https://github.com/openthread/wpantund/ /usr/src/wpantund
 WORKDIR /usr/src/wpantund
 
 RUN ./bootstrap.sh
-RUN ./configure --sysconfdir=/etc/wpantund
+RUN ./configure --sysconfdir=/etc/wpantund --with-dbusconfdir=/etc/dbus-1/system.d/
 RUN make
 RUN make install
 WORKDIR /root
 RUN rm -rf /usr/src/wpantund
+
+CMD ["wpantund"]
